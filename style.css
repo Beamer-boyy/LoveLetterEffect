@@ -1,3 +1,4 @@
+/* Estilos globais */
 * {
     min-width: 0;
     font: inherit;
@@ -20,69 +21,86 @@ svg {
 body {
     margin: 0;
     min-height: 100dvh;
-}
-
-h1,
-h2,
-h3 {
-    text-wrap: balance;
-}
-
-p {
-    text-wrap: pretty;
-}
-
-body {
     background-color: #fad7df;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Centraliza o conteúdo principal */
 main {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    gap: 3rem;
 }
 
+/* Cartinha */
 .container-letter {
-    width: 90%;
+    width: 50%;  /* Ajuste o tamanho da carta */
     max-width: 400px;
-    position: relative; /* Tornar o contêiner o ponto de referência */
+    height: auto;
+    position: relative; /* Para a carta servir como ponto de referência */
+    padding: 20px;
+    margin: 10px;
+    display: flex;
+    justify-content: center;  /* Garantir que a carta fique centralizada */
+    align-items: center;
+    flex-direction: column;
 }
 
+/* A carta (capa e papel) */
 .cover {
     position: absolute;
-    border-left: 200px solid transparent;
-    border-right: 200px solid transparent;
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
     border-top: 100px solid #fe3334;
     border-bottom: 100px solid transparent;
-    transition: transform .75s;
+    transition: transform 0.75s;
     transform-origin: top;
 }
 
-.paper {
-    position: absolute;
-    padding: 1.5rem;
-    line-height: 2rem;
-    right: 5px;
-    z-index: -1; /* Mantém o papel acima do coração */
-    background: white;
-    width: 390px;
-    height: 180px;
-    transition: all .75s;
-}
-
 .letter {
-    border-left: 200px solid #ff989e;
-    border-right: 200px solid #ff989e;
+    border-left: 150px solid #ff989e;
+    border-right: 150px solid #ff989e;
     border-top: 100px solid transparent;
     border-bottom: 100px solid #ff858a;
 }
 
+/* Coração */
+.heart {
+    display: block;
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.5rem;
+    color: #fe3334;
+    z-index: -1;
+    animation: growAndRise 3s ease-out forwards;
+}
+
+/* Animação do coração */
+@keyframes growAndRise {
+    0% {
+        opacity: 0;
+        transform: translateY(50px) scale(0.4); /* Começa pequeno e um pouco abaixo */
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(-20px) scale(1.2); /* Cresce e sobe suavemente */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(-50px) scale(1.4); /* Continua subindo e um pouco maior */
+    }
+}
+
+/* Botões */
 .options {
     display: flex;
-    gap: 5rem;
+    gap: 2rem;
+    justify-content: center;
 }
 
 button {
@@ -100,80 +118,49 @@ button:hover {
     color: white;
 }
 
-.open-cover {
-    transform: rotatex(180deg);
-}
-
-.open-paper {
-    animation: openPaper .5s forwards;
-}
-
-@keyframes openPaper {
-    0% {
-        top: 0;
-    }
-    100% {
-        top: -120px;
-    }
-}
-
-.close-paper {
-    animation: closePaper .5s forwards;
-}
-
-@keyframes closePaper {
-    0% {
-        top: -120px;
-    }
-    100% {
-        top: 0;
-    }
-}
-
-.heart {
-    display: none;
-    position: absolute;
-    top: 100px; /* Começa fora da carta, escondido */
-    left: calc(50% - 20px); /* Centraliza o coração horizontalmente */
-    transform: translateX(-50%) scale(0.5); /* Ajusta o alinhamento */
-    font-size: 2rem;
+/* Mensagem */
+#mensagem {
     color: #fe3334;
-    z-index: -1; /* Fica atrás da carta inicialmente */
-    animation: growAndRise 3s ease-out forwards;
+    text-align: center;
+    font-size: 1.5rem;
 }
 
-@keyframes growAndRise {
-    0% {
-        opacity: 0;
-        transform: translateY(50px) scale(0.5); /* Começa mais abaixo e pequeno, escondido */
-    }
-    50% {
-        opacity: 1;
-        transform: translateY(-40px) scale(1.5); /* Cresce e sobe suavemente */
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(-80px) scale(2); /* Continua subindo e aumenta de tamanho */
-    }
-}
-
+/* Estilos para dispositivos móveis (mobile-first) */
 @media (max-width: 600px) {
     .heart {
-        font-size: 2rem; /* Ajuste de tamanho no celular */
-        transform: scale(1.2); /* Ajuste no tamanho do coração */
+        font-size: 3rem; /* Reduzindo o tamanho do emoji */
+        transform: scale(1.5);
     }
 
     .options button {
-        padding: 0.5rem; /* Botões menores no celular */
+        padding: 0.5rem 1rem;
         font-size: 14px;
     }
 
     .container-letter {
-        width: 80%; /* Ajusta o tamanho da carta no celular */
+        width: 90%; 
+        max-width: 320px;  /* Reduzindo a largura da carta */
+        height: auto;
+    }
+
+    #mensagem {
+        font-size: 1.2rem; /* Ajustando o tamanho da mensagem */
     }
 }
 
-#mensagem {
-    font-family: Arial, Helvetica, sans-serif;
-    color: #fe3334;
+/* Estilos para dispositivos com telas maiores */
+@media (max-width: 600px) {
+    .container-letter {
+        width: 80%;
+        max-width: 400px;
+        
+    }
+
+    #mensagem {
+        font-size: 1.5rem;
+    }
+
+    .options button {
+        font-size: 16px;
+    }
 }

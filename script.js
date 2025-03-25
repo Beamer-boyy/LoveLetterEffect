@@ -1,23 +1,9 @@
-document.getElementById('open').addEventListener('click', function () {
-    const letter = document.querySelector('.cover');
-    const heart = document.querySelector('.heart');
-    
-    // Abertura da carta
-    letter.classList.add('open-cover');
-    
-    // Esperar a carta abrir para mostrar o coração
-    setTimeout(() => {
-        heart.style.display = 'block'; // Tornar o coração visível
-    }, 800); // Depois de 0.8 segundos (duração da animação de abertura)
+document.getElementById("open").addEventListener("click", function() {
+    document.querySelector(".cover").style.transform = "rotateX(180deg)";
+    document.querySelector(".heart").style.display = "inline-block";
 });
 
-document.getElementById('close').addEventListener('click', function () {
-    const letter = document.querySelector('.cover');
-    const heart = document.querySelector('.heart');
-    
-    // Fechar a carta
-    letter.classList.remove('open-cover');
-    
-    // Esconder o coração
-    heart.style.display = 'none';
+document.getElementById("close").addEventListener("click", function() {
+    document.querySelector(".cover").style.transform = "rotateX(0deg)";
+    document.querySelector(".heart").style.display = "none";
 });
